@@ -39,8 +39,15 @@ app.put("/api/movies", movieHandlers.putMovie);
 app.put("/api/users/:id", users.putUsers);
 
 
+//VALIDATION EXPRESS04BIS
 
-const { validateMovie } = require("./validator.js");
+const { validateMovie, validateUser } = require("./validator.js");
 
 app.post("/api/movies", validateMovie, movieHandlers.postMovie);
+app.post("/api/users", validateUser, users.postUsers);
 
+app.put("/api/movies", validateMovie, movieHandlers.putMovie);
+app.put("/api/users", validateUser, users.putUsers);
+
+
+app.use(express.json());
